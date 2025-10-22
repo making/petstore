@@ -15,7 +15,7 @@
 <div id="Content">
     <div id="Catalog">
         <form:form modelAttribute="accountForm"
-                   action="${pageContext.request.contextPath}/account/newAccount">
+                   action="${pageContext.request.contextPath}/account/new">
 
             <h3>User Information</h3>
 

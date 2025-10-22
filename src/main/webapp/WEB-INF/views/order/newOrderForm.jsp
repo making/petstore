@@ -15,7 +15,7 @@
 <div id="Content">
     <div id="Catalog">
         <form:form modelAttribute="orderForm"
-                   action="${pageContext.request.contextPath}/order/newOrder">
+                   action="${pageContext.request.contextPath}/order/new">
 
             <table>
                 <tr>

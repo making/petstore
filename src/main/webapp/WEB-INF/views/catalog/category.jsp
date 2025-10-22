@@ -27,7 +27,7 @@
             <c:forEach var="product" items="${productList}">
                 <tr>
                     <td><a
-                            href="${pageContext.request.contextPath}/catalog/viewProduct?productId=${f:h(product.productId)}">${f:h(product.productId)}</a>
+                            href="${pageContext.request.contextPath}/catalog/products/${f:h(product.productId)}">${f:h(product.productId)}</a>
                     </td>
                     <td>${f:h(product.name)}</td>
                 </tr>

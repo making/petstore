@@ -14,8 +14,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -40,11 +40,11 @@ public class OrderController {
 		return this.cardTypeList;
 	}
 
-	@GetMapping(path = "/order/newOrderForm")
+	@GetMapping(path = "/order/new", params = "form")
 	public String newOrderForm(@ModelAttribute OrderForm orderForm, Model model,
 			@AuthenticationPrincipal AccountUserDetails userDetails) {
 		if (!this.cart.isAllInStock()) {
-			return "redirect:/cart/viewCart";
+			return "redirect:/cart";
 		}
 		Account account = userDetails.account();
 		Order order = new Order().initOrder(account, this.cart, this.clock);
@@ -52,21 +52,21 @@ public class OrderController {
 		return "order/newOrderForm";
 	}
 
-	@PostMapping(path = "/order/newOrder")
+	@PostMapping(path = "/order/new")
 	public String confirmOrder(OrderForm orderForm) {
 		return "order/confirmOrder";
 	}
 
-	@PostMapping(path = "/order/newOrder", params = "shippingAddressRequired=true")
+	@PostMapping(path = "/order/new", params = "shippingAddressRequired=true")
 	public String shippingForm(OrderForm orderForm, Order order) {
 		return "order/shippingForm";
 	}
 
-	@PostMapping(path = "/order/newOrder", params = "confirmed")
+	@PostMapping(path = "/order/new", params = "confirmed")
 	public String newOrder(OrderForm orderForm, @AuthenticationPrincipal AccountUserDetails userDetails,
 			RedirectAttributes attributes) {
 		if (!this.cart.isAllInStock()) {
-			return "redirect:/cart/viewCart";
+			return "redirect:/cart";
 		}
 		Account account = userDetails.account();
 		Order.Builder builder = Order.from(new Order().initOrder(account, this.cart, this.clock));
@@ -75,11 +75,11 @@ public class OrderController {
 		attributes.addAttribute("orderId", order.getOrderId());
 		attributes.addFlashAttribute("message", "Thank you, your order has been submitted.");
 		this.cart.clear();
-		return "redirect:/order/viewOrder";
+		return "redirect:/order/orders/{orderId}";
 	}
 
-	@GetMapping(path = "/order/viewOrder")
-	public String viewOrder(@RequestParam int orderId, Model model,
+	@GetMapping(path = "/order/orders/{orderId}")
+	public String viewOrder(@PathVariable int orderId, Model model,
 			@AuthenticationPrincipal AccountUserDetails userDetails) {
 		Order order = this.orderService.getOrder(orderId);
 		Account account = userDetails.account();
@@ -92,7 +92,7 @@ public class OrderController {
 		}
 	}
 
-	@GetMapping(path = "/order/listOrders")
+	@GetMapping(path = "/order/orders")
 	public String listOrders(Model model, @AuthenticationPrincipal AccountUserDetails userDetails) {
 		String username = userDetails.getUsername();
 		List<Order> orderList = this.orderService.getOrdersByUsername(username);

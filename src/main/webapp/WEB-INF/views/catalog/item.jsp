@@ -47,7 +47,7 @@
 
             <tr>
                 <td><a
-                        href="${pageContext.request.contextPath}/cart/addItemToCart?workingItemId=${f:h(item.itemId)}">
+                        href="${pageContext.request.contextPath}/cart?add&workingItemId=${f:h(item.itemId)}">
                     Add to Cart</a></td>
             </tr>
         </table>

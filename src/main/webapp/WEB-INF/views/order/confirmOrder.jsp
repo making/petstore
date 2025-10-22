@@ -17,7 +17,7 @@
     <div id="Catalog">
         Please confirm the information below and then press continue...
         <form:form modelAttribute="orderForm"
-                   action="${pageContext.request.contextPath}/order/newOrder">
+                   action="${pageContext.request.contextPath}/order/new">
             <table>
                 <tr>
                     <th align="center" colspan="2"><font size="4"><b>Order</b></font>

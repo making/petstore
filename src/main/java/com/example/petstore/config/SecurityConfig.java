@@ -17,7 +17,7 @@ class SecurityConfig {
 	@Bean
 	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		return http
-			.formLogin(formLogin -> formLogin.loginPage("/account/signonForm")
+			.formLogin(formLogin -> formLogin.loginPage("/account/signon?form")
 				.loginProcessingUrl("/account/signon")
 				.failureUrl("/account/signonForm?error=true"))
 			.logout(logout -> logout.logoutUrl("/account/signoff").logoutSuccessUrl("/"))

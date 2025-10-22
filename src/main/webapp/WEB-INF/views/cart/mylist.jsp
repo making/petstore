@@ -6,7 +6,7 @@
         <sec:authentication property="principal.myList" var="products"/>
         <c:forEach var="product" items="${products}">
             <li><a
-                    href="${pageContext.request.contextPath}/catalog/viewProduct?productId=${f:h(product.productId)}">
+                    href="${pageContext.request.contextPath}/catalog/products/${f:h(product.productId)}">
                     ${f:h(product.name)} </a>(${f:h(product.productId)})
             </li>
         </c:forEach>

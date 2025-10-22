@@ -21,7 +21,7 @@
             <spring:eval var="cart" expression="@cart"/>
             <h2>Shopping Cart</h2>
             <form:form modelAttribute="cartForm"
-                       action="${pageContext.request.contextPath}/cart/updateCartQuantities">
+                       action="${pageContext.request.contextPath}/cart?update">
                 <table>
                     <tr>
                         <th><b>Item ID</b></th>
@@ -43,7 +43,7 @@
                     <c:forEach var="cartItem" items="${cart.cartItems}">
                         <tr>
                             <td><a
-                                    href="${pageContext.request.contextPath}/catalog/viewItem?itemId=${f:h(cartItem.item.itemId)}">
+                                    href="${pageContext.request.contextPath}/catalog/items/${f:h(cartItem.item.itemId)}">
                                     ${f:h(cartItem.item.itemId)}</a></td>
                             <td>${f:h(cartItem.item.product.productId)}</td>
                             <td>${f:h(cartItem.item.attribute1)}
@@ -55,6 +55,7 @@
                             <td>${f:h(cartItem.inStock)}</td>
                             <td><form:input
                                     type="number"
+                                    min="0"
                                     path="quantity[${f:h(cartItem.item.itemId)}]"
                                     value="${f:h(cartItem.quantity)}"/></td>
                             <td><fmt:formatNumber
@@ -64,7 +65,7 @@
                                     value="${f:h(cartItem.total)}"
                                     pattern="$#,##0.00"/></td>
                             <td><a
-                                    href="${pageContext.request.contextPath}/cart/removeItemFromCart?cartItem=${f:h(cartItem.item.itemId)}">Remove</a>
+                                    href="${pageContext.request.contextPath}/cart?remove&cartItem=${f:h(cartItem.item.itemId)}">Remove</a>
                             </td>
                         </tr>
                     </c:forEach>
@@ -78,7 +79,7 @@
             </form:form>
             <c:if test="${cart.numberOfItems > 0 && cart.allInStock}">
                 <a
-                        href="${pageContext.request.contextPath}/order/newOrderForm">Proceed
+                        href="${pageContext.request.contextPath}/order/new?form">Proceed
                     to Checkout</a>
             </c:if>
         </div>

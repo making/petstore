@@ -30,7 +30,7 @@
             <c:forEach var="item" items="${itemList}">
                 <tr>
                     <td><a
-                            href="${pageContext.request.contextPath}/catalog/viewItem?itemId=${f:h(item.itemId)}">
+                            href="${pageContext.request.contextPath}/catalog/items/${f:h(item.itemId)}">
                             ${f:h(item.itemId)} </a></td>
                     <td>${f:h(item.product.productId)}</td>
                     <td>${f:h(item.attribute1)}${f:h(item.attribute2)}
@@ -40,7 +40,7 @@
                             value="${f:h(item.listPrice)}"
                             pattern="$#,##0.00"/></td>
                     <td><a
-                            href="${pageContext.request.contextPath}/cart/addItemToCart?workingItemId=${f:h(item.itemId)}">
+                            href="${pageContext.request.contextPath}/cart?add&workingItemId=${f:h(item.itemId)}">
                         Add to Cart</a></td>
                 </tr>
             </c:forEach>

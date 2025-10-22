@@ -60,22 +60,22 @@ public class AccountController {
 		return this.categoryList;
 	}
 
-	@GetMapping(path = "/account/signonForm")
+	@GetMapping(path = "/account/signon", params = "form")
 	public String signonForm() {
 		return "account/signonForm";
 	}
 
-	@GetMapping(path = "/account/signoffForm")
+	@GetMapping(path = "/account/signoff", params = "form")
 	public String signoffForm() {
 		return "account/signoffForm";
 	}
 
-	@GetMapping(path = "/account/newAccountForm")
+	@GetMapping(path = "/account/new", params = "form")
 	public String newAccountForm(@ModelAttribute AccountForm form) {
 		return "account/newAccountForm";
 	}
 
-	@PostMapping(path = "/account/newAccount")
+	@PostMapping(path = "/account/new")
 	public String newAccount(@Validated({ AccountForm.NewAccount.class, Default.class }) AccountForm form,
 			BindingResult result) {
 		if (result.hasErrors()) {
@@ -83,10 +83,10 @@ public class AccountController {
 		}
 		Account account = form.toAccount().build();
 		this.accountService.insertAccount(account);
-		return "redirect:/account/signonForm";
+		return "redirect:/account/signon?form";
 	}
 
-	@GetMapping(path = "/account/editAccountForm")
+	@GetMapping(path = "/account/edit", params = "form")
 	public String editAccountForm(@ModelAttribute AccountForm form,
 			@AuthenticationPrincipal AccountUserDetails userDetails) {
 		Account account = userDetails.account();
@@ -96,7 +96,7 @@ public class AccountController {
 		return "account/editAccountForm";
 	}
 
-	@PostMapping(path = "/account/editAccount")
+	@PostMapping(path = "/account/edit")
 	public String editAccount(@Validated({ AccountForm.EditAccount.class, Default.class }) AccountForm form,
 			BindingResult result, @AuthenticationPrincipal AccountUserDetails userDetails) {
 		form.setUsername(userDetails.getUsername());
@@ -110,7 +110,7 @@ public class AccountController {
 		List<Product> myList = this.catalogService.getProductListByCategory(account.getFavouriteCategoryId());
 		userDetails.myList().clear();
 		userDetails.myList().addAll(myList);
-		return "redirect:/account/editAccountForm";
+		return "redirect:/account/edit?form";
 	}
 
 }

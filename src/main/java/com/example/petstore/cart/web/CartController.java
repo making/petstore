@@ -21,28 +21,28 @@ public class CartController {
 		this.cart = cart;
 	}
 
-	@GetMapping(path = "/cart/viewCart")
+	@GetMapping(path = "/cart")
 	public String viewCart(@ModelAttribute CartForm cartForm) {
 		return "cart/cart";
 	}
 
-	@GetMapping(path = "/cart/addItemToCart")
+	@GetMapping(path = "/cart", params = "add")
 	public String addItemToCart(@RequestParam String workingItemId) {
 		this.cart.addItemOrIncrementQuantity(workingItemId, this.catalogService::getInventoryQuantity,
 				this.catalogService::getItem);
-		return "redirect:/cart/viewCart";
+		return "redirect:/cart";
 	}
 
-	@PostMapping(path = "/cart/updateCartQuantities")
+	@PostMapping(path = "/cart", params = "update")
 	public String updateCartQuantities(@ModelAttribute CartForm cartForm) {
 		this.cart.batchUpdate(cartForm.getQuantity(), this.catalogService::getInventoryQuantity);
-		return "redirect:/cart/viewCart";
+		return "redirect:/cart";
 	}
 
-	@GetMapping(path = "/cart/removeItemFromCart")
+	@GetMapping(path = "/cart", params = "remove")
 	public String removeItemFromCart(@RequestParam("cartItem") String cartItem) {
 		this.cart.removeItemById(cartItem);
-		return "redirect:/cart/viewCart";
+		return "redirect:/cart";
 	}
 
 }

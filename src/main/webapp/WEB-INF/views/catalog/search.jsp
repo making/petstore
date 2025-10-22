@@ -25,10 +25,10 @@
             <c:forEach var="product" items="${productList}">
                 <tr>
                     <td><a
-                            href="${pageContext.request.contextPath}/catalog/viewProduct?productId=${f:h(product.productId)}">${product.description}<%--  XSS Vulnerable! --%></a>
+                            href="${pageContext.request.contextPath}/catalog/products/${f:h(product.productId)}">${product.description}<%--  XSS Vulnerable! --%></a>
                     </td>
                     <td><b> <a
-                            href="${pageContext.request.contextPath}/catalog/viewProduct?productId=${f:h(product.productId)}"><font
+                            href="${pageContext.request.contextPath}/catalog/products/${f:h(product.productId)}"><font
                             color="BLACK">
                             ${f:h(product.productId)} </font></a>
                     </b></td>

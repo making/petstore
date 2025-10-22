@@ -15,7 +15,7 @@
 <div id="Content">
     <div id="Catalog">
         <form:form modelAttribute="accountForm"
-                   action="${pageContext.request.contextPath}/account/editAccount">
+                   action="${pageContext.request.contextPath}/account/edit">
 
             <h3>User Information</h3>
 
@@ -39,7 +39,7 @@
                    value="Save Account Information"/>
 
         </form:form>
-        <a href="${pageContext.request.contextPath}/order/listOrders">My
+        <a href="${pageContext.request.contextPath}/order/orders">My
             Orders</a>
     </div>
 </div>

@@ -32,7 +32,7 @@
             <input name="submit" type="submit" value="Sign in"/>
         </form:form>
         Need a user name and password? <a
-            href="${pageContext.request.contextPath}/account/newAccountForm">Register
+            href="${pageContext.request.contextPath}/account/new?form">Register
         Now!</a>
     </div>
 </div>
