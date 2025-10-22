@@ -17,40 +17,40 @@
 
     <div id="Catalog">
 
-        <table>
-            <tr>
-                <td>${product.description}<%--  XSS Vulnerable! --%></td>
-            </tr>
-            <tr>
-                <td><b> ${f:h(item.itemId)} </b></td>
-            </tr>
-            <tr>
-                <td><b><font size="4">
+        <div class="item-detail">
+            <div class="item-image">
+                ${product.description}<%--  XSS Vulnerable! --%>
+            </div>
+            <div class="item-info">
+                <div class="item-id">
+                    <span class="label">Item ID:</span> ${f:h(item.itemId)}
+                </div>
+                <h2 class="item-title">
                     ${f:h(item.attribute1)} ${f:h(item.attribute2)}
                     ${f:h(item.attribute3)} ${f:h(item.attribute4)}
-                    ${f:h(item.attribute5)} ${f:h(product.name)} </font></b></td>
-            </tr>
-            <tr>
-                <td>${f:h(product.name)}</td>
-            </tr>
-            <tr>
-                <td><c:if test="${item.quantity <= 0}">
-                    Back ordered.
-                </c:if> <c:if test="${item.quantity > 0}">
-                    ${f:h(item.quantity)} in stock.
-                </c:if></td>
-            </tr>
-            <tr>
-                <td><fmt:formatNumber value="${f:h(item.listPrice)}"
-                                      pattern="$#,##0.00"/></td>
-            </tr>
-
-            <tr>
-                <td><a
-                        href="${pageContext.request.contextPath}/cart?add&workingItemId=${f:h(item.itemId)}">
-                    Add to Cart</a></td>
-            </tr>
-        </table>
+                    ${f:h(item.attribute5)} ${f:h(product.name)}
+                </h2>
+                <div class="item-product-name">
+                    ${f:h(product.name)}
+                </div>
+                <div class="item-stock">
+                    <c:if test="${item.quantity <= 0}">
+                        <span class="out-of-stock"><i class="fas fa-times-circle"></i> Back ordered</span>
+                    </c:if>
+                    <c:if test="${item.quantity > 0}">
+                        <span class="in-stock"><i class="fas fa-check-circle"></i> ${f:h(item.quantity)} in stock</span>
+                    </c:if>
+                </div>
+                <div class="item-price">
+                    <fmt:formatNumber value="${f:h(item.listPrice)}" pattern="$#,##0.00"/>
+                </div>
+                <div class="item-action">
+                    <a class="add-to-cart-btn" href="${pageContext.request.contextPath}/cart?add&workingItemId=${f:h(item.itemId)}">
+                        <i class="fas fa-cart-plus"></i> Add to Cart
+                    </a>
+                </div>
+            </div>
+        </div>
 
     </div>
 </div>

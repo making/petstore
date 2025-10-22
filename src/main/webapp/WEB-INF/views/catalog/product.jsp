@@ -19,7 +19,7 @@
 
         <h2>${f:h(product.name)}</h2>
 
-        <table>
+        <table class="product-items-table">
             <tr>
                 <th>Item ID</th>
                 <th>Product ID</th>
@@ -29,19 +29,25 @@
             </tr>
             <c:forEach var="item" items="${itemList}">
                 <tr>
-                    <td><a
-                            href="${pageContext.request.contextPath}/catalog/items/${f:h(item.itemId)}">
-                            ${f:h(item.itemId)} </a></td>
-                    <td>${f:h(item.product.productId)}</td>
-                    <td>${f:h(item.attribute1)}${f:h(item.attribute2)}
-                            ${f:h(item.attribute3)} ${f:h(item.attribute4)}
-                            ${f:h(item.attribute5)} ${f:h(product.name)}</td>
-                    <td><fmt:formatNumber
-                            value="${f:h(item.listPrice)}"
-                            pattern="$#,##0.00"/></td>
-                    <td><a
-                            href="${pageContext.request.contextPath}/cart?add&workingItemId=${f:h(item.itemId)}">
-                        Add to Cart</a></td>
+                    <td class="item-id-cell">
+                        <a href="${pageContext.request.contextPath}/catalog/items/${f:h(item.itemId)}">
+                            ${f:h(item.itemId)}
+                        </a>
+                    </td>
+                    <td class="product-id-cell">${f:h(item.product.productId)}</td>
+                    <td class="description-cell">
+                        ${f:h(item.attribute1)} ${f:h(item.attribute2)}
+                        ${f:h(item.attribute3)} ${f:h(item.attribute4)}
+                        ${f:h(item.attribute5)} ${f:h(product.name)}
+                    </td>
+                    <td class="price-cell">
+                        <fmt:formatNumber value="${f:h(item.listPrice)}" pattern="$#,##0.00"/>
+                    </td>
+                    <td class="action-cell">
+                        <a class="add-to-cart-btn" href="${pageContext.request.contextPath}/cart?add&workingItemId=${f:h(item.itemId)}">
+                            <i class="fas fa-cart-plus"></i> Add to Cart
+                        </a>
+                    </td>
                 </tr>
             </c:forEach>
         </table>

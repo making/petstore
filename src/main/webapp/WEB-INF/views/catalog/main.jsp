@@ -24,22 +24,36 @@
     <div id="Main">
         <div id="Sidebar">
             <div id="SidebarContent">
-                <a
-                        href="${pageContext.request.contextPath}/catalog/categories/FISH"><img
-                        src="${pageContext.request.contextPath}/images/fish_icon.gif"/>
-                </a> <br/> Saltwater, Freshwater <br/> <a
-                    href="${pageContext.request.contextPath}/catalog/categories/DOGS"><img
-                    src="${pageContext.request.contextPath}/images/dogs_icon.gif"/>
-            </a> <br/> Various Breeds <br/> <a
-                    href="${pageContext.request.contextPath}/catalog/categories/CATS"><img
-                    src="${pageContext.request.contextPath}/images/cats_icon.gif"/>
-            </a> <br/> Various Breeds, Exotic Varieties <br/> <a
-                    href="${pageContext.request.contextPath}/catalog/categories/REPTILES"><img
-                    src="${pageContext.request.contextPath}/images/reptiles_icon.gif"/>
-            </a> <br/> Lizards, Turtles, Snakes <br/> <a
-                    href="${pageContext.request.contextPath}/catalog/categories/BIRDS"><img
-                    src="${pageContext.request.contextPath}/images/birds_icon.gif"/>
-            </a> <br/> Exotic Varieties
+                <div class="sidebar-item">
+                    <a href="${pageContext.request.contextPath}/catalog/categories/FISH">
+                        <i class="fas fa-fish"></i> Fish
+                    </a>
+                    <div class="sidebar-desc">Saltwater, Freshwater</div>
+                </div>
+                <div class="sidebar-item">
+                    <a href="${pageContext.request.contextPath}/catalog/categories/DOGS">
+                        <i class="fas fa-dog"></i> Dogs
+                    </a>
+                    <div class="sidebar-desc">Various Breeds</div>
+                </div>
+                <div class="sidebar-item">
+                    <a href="${pageContext.request.contextPath}/catalog/categories/CATS">
+                        <i class="fas fa-cat"></i> Cats
+                    </a>
+                    <div class="sidebar-desc">Various Breeds, Exotic Varieties</div>
+                </div>
+                <div class="sidebar-item">
+                    <a href="${pageContext.request.contextPath}/catalog/categories/REPTILES">
+                        <i class="fas fa-dragon"></i> Reptiles
+                    </a>
+                    <div class="sidebar-desc">Lizards, Turtles, Snakes</div>
+                </div>
+                <div class="sidebar-item">
+                    <a href="${pageContext.request.contextPath}/catalog/categories/BIRDS">
+                        <i class="fas fa-dove"></i> Birds
+                    </a>
+                    <div class="sidebar-desc">Exotic Varieties</div>
+                </div>
             </div>
         </div>
 

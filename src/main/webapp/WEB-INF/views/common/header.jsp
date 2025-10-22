@@ -1,36 +1,24 @@
 <div id="Header">
     <div id="Logo">
         <div id="LogoContent">
-            <a href="${pageContext.request.contextPath}/catalog">
-                <img
-                        src="${pageContext.request.contextPath}/images/logo-topbar.gif"/>
+            <a href="${pageContext.request.contextPath}/catalog" style="text-decoration: none; color: var(--primary-color); font-size: 1.5rem; font-weight: 700;">
+                <i class="fas fa-paw"></i> Pet Store
             </a>
         </div>
     </div>
 
     <div id="Menu">
         <div id="MenuContent">
-            <a
-                    href="${pageContext.request.contextPath}/cart">
-                <img align="middle" name="img_cart"
-                     src="${pageContext.request.contextPath}/images/cart.gif"/>
-            </a> <img align="middle"
-                      src="${pageContext.request.contextPath}/images/separator.gif"/>
+            <a href="${pageContext.request.contextPath}/cart">
+                <i class="fas fa-shopping-cart"></i> Cart
+            </a>
 
             <sec:authorize access="!isAuthenticated()">
-                <a
-                        href="${pageContext.request.contextPath}/account/signon?form">
-                    Sign In </a>
+                <a href="${pageContext.request.contextPath}/account/signon?form"><i class="fas fa-sign-in-alt"></i> Sign In</a>
             </sec:authorize>
             <sec:authorize access="isAuthenticated()">
-                <a
-                        href="${pageContext.request.contextPath}/account/signoff?form">
-                    Sign Out </a>
-                <img align="middle"
-                     src="${pageContext.request.contextPath}/images/separator.gif"/>
-                <a
-                        href="${pageContext.request.contextPath}/account/edit?form">
-                    My Account </a>
+                <a href="${pageContext.request.contextPath}/account/edit?form"><i class="fas fa-user"></i> My Account</a>
+                <a href="${pageContext.request.contextPath}/account/signoff?form"><i class="fas fa-sign-out-alt"></i> Sign Out</a>
             </sec:authorize>
         </div>
     </div>
@@ -48,29 +36,20 @@
     </div>
 
     <div id="QuickLinks">
-        <a
-                href="${pageContext.request.contextPath}/catalog/categories/FISH"><img
-                src="${pageContext.request.contextPath}/images/sm_fish.gif"/>
-        </a> <img
-            src="${pageContext.request.contextPath}/images/separator.gif"/>
-        <a
-                href="${pageContext.request.contextPath}/catalog/categories/DOGS"><img
-                src="${pageContext.request.contextPath}/images/sm_dogs.gif"/>
-        </a> <img
-            src="${pageContext.request.contextPath}/images/separator.gif"/>
-        <a
-                href="${pageContext.request.contextPath}/catalog/categories/REPTILES"><img
-                src="${pageContext.request.contextPath}/images/sm_reptiles.gif"/>
-        </a> <img
-            src="${pageContext.request.contextPath}/images/separator.gif"/>
-        <a
-                href="${pageContext.request.contextPath}/catalog/categories/CATS"><img
-                src="${pageContext.request.contextPath}/images/sm_cats.gif"/>
-        </a> <img
-            src="${pageContext.request.contextPath}/images/separator.gif"/>
-        <a
-                href="${pageContext.request.contextPath}/catalog/categories/BIRDS"><img
-                src="${pageContext.request.contextPath}/images/sm_birds.gif"/>
+        <a href="${pageContext.request.contextPath}/catalog/categories/FISH">
+            <i class="fas fa-fish"></i> Fish
+        </a>
+        <a href="${pageContext.request.contextPath}/catalog/categories/DOGS">
+            <i class="fas fa-dog"></i> Dogs
+        </a>
+        <a href="${pageContext.request.contextPath}/catalog/categories/REPTILES">
+            <i class="fas fa-dragon"></i> Reptiles
+        </a>
+        <a href="${pageContext.request.contextPath}/catalog/categories/CATS">
+            <i class="fas fa-cat"></i> Cats
+        </a>
+        <a href="${pageContext.request.contextPath}/catalog/categories/BIRDS">
+            <i class="fas fa-dove"></i> Birds
         </a>
     </div>
 

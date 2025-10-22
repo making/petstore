@@ -16,7 +16,7 @@
     <%@ include file="/WEB-INF/views/common/backlink.jsp" %>
 
     <div id="Catalog">
-        <table>
+        <table class="product-search-table">
             <tr>
                 <th>&nbsp;</th>
                 <th>Product ID</th>
@@ -24,15 +24,17 @@
             </tr>
             <c:forEach var="product" items="${productList}">
                 <tr>
-                    <td><a
-                            href="${pageContext.request.contextPath}/catalog/products/${f:h(product.productId)}">${product.description}<%--  XSS Vulnerable! --%></a>
+                    <td class="product-image-cell">
+                        <a href="${pageContext.request.contextPath}/catalog/products/${f:h(product.productId)}">
+                            ${product.description}<%--  XSS Vulnerable! --%>
+                        </a>
                     </td>
-                    <td><b> <a
-                            href="${pageContext.request.contextPath}/catalog/products/${f:h(product.productId)}"><font
-                            color="BLACK">
-                            ${f:h(product.productId)} </font></a>
-                    </b></td>
-                    <td>${f:h(product.name)}</td>
+                    <td class="product-id-cell">
+                        <a href="${pageContext.request.contextPath}/catalog/products/${f:h(product.productId)}">
+                            ${f:h(product.productId)}
+                        </a>
+                    </td>
+                    <td class="product-name-cell">${f:h(product.name)}</td>
                 </tr>
             </c:forEach>
         </table>
