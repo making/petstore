@@ -25,8 +25,8 @@
 
             <p>Please enter your username and password.</p>
             <p>
-                Username: <input type='text' name='username' value='j2ee'>
-                <br/> Password: <input type='password' name='password'
+                <label for="username">Username:</label> <input type='text' name='username' id='username' value='j2ee'>
+                <br/> <label for="password">Password:</label> <input type='password' name='password' id='password'
                                        value="j2ee"/>
             </p>
             <input name="submit" type="submit" value="Sign in"/>

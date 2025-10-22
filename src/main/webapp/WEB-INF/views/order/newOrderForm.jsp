@@ -22,19 +22,19 @@
                     <th colspan=2>Payment Details</th>
                 </tr>
                 <tr>
-                    <td>Card Type:</td>
+                    <td><form:label path="cardType">Card Type:</form:label></td>
                     <td><form:select path="cardType"
                                      items="${creditCardTypes}">
                     </form:select></td>
                 </tr>
                 <tr>
-                    <td>Card Number:</td>
+                    <td><form:label path="creditCard">Card Number:</form:label></td>
                     <td><form:input path="creditCard"/> * Use a fake
                         number!
                     </td>
                 </tr>
                 <tr>
-                    <td>Expiry Date (MM/YYYY):</td>
+                    <td><form:label path="expiryDate">Expiry Date (MM/YYYY):</form:label></td>
                     <td><form:input path="expiryDate"/></td>
                 </tr>
                 <tr>
@@ -42,42 +42,42 @@
                 </tr>
 
                 <tr>
-                    <td>First name:</td>
+                    <td><form:label path="billToFirstName">First name:</form:label></td>
                     <td><form:input path="billToFirstName"/></td>
                 </tr>
                 <tr>
-                    <td>Last name:</td>
+                    <td><form:label path="billToLastName">Last name:</form:label></td>
                     <td><form:input path="billToLastName"/></td>
                 </tr>
                 <tr>
-                    <td>Address 1:</td>
+                    <td><form:label path="billAddress1">Address 1:</form:label></td>
                     <td><form:input size="40" path="billAddress1"/></td>
                 </tr>
                 <tr>
-                    <td>Address 2:</td>
+                    <td><form:label path="billAddress2">Address 2:</form:label></td>
                     <td><form:input size="40" path="billAddress2"/></td>
                 </tr>
                 <tr>
-                    <td>City:</td>
+                    <td><form:label path="billCity">City:</form:label></td>
                     <td><form:input path="billCity"/></td>
                 </tr>
                 <tr>
-                    <td>State:</td>
+                    <td><form:label path="billState">State:</form:label></td>
                     <td><form:input size="4" path="billState"/></td>
                 </tr>
                 <tr>
-                    <td>Zip:</td>
+                    <td><form:label path="billZip">Zip:</form:label></td>
                     <td><form:input size="10" path="billZip"/></td>
                 </tr>
                 <tr>
-                    <td>Country:</td>
+                    <td><form:label path="billCountry">Country:</form:label></td>
                     <td><form:input size="15" path="billCountry"/></td>
                 </tr>
 
                 <tr>
-                    <td colspan=2><form:checkbox
-                            path="shippingAddressRequired"/> Ship to
-                        different address...
+                    <td colspan=2>
+                        <form:checkbox path="shippingAddressRequired" id="shippingAddressRequired"/>
+                        <form:label path="shippingAddressRequired">Ship to different address...</form:label>
                     </td>
                 </tr>
 

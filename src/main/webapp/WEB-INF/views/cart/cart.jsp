@@ -53,11 +53,11 @@
                                     ${f:h(cartItem.item.attribute5)}
                                     ${f:h(cartItem.item.product.name)}</td>
                             <td>${f:h(cartItem.inStock)}</td>
-                            <td><form:input
+                            <td><form:label path="quantity[${f:h(cartItem.item.itemId)}]"><form:input
                                     type="number"
                                     min="0"
                                     path="quantity[${f:h(cartItem.item.itemId)}]"
-                                    value="${f:h(cartItem.quantity)}"/></td>
+                                    value="${f:h(cartItem.quantity)}"/></form:label></td>
                             <td><fmt:formatNumber
                                     value="${f:h(cartItem.item.listPrice)}"
                                     pattern="$#,##0.00"/></td>

@@ -21,17 +21,17 @@
 
             <table>
                 <tr>
-                    <td>User ID:</td>
+                    <td><form:label path="username">User ID:</form:label></td>
                     <td><form:input path="username"/> <form:errors
                             path="username"/></td>
                 </tr>
                 <tr>
-                    <td>New password:</td>
+                    <td><form:label path="password">New password:</form:label></td>
                     <td><form:password path="password"/> <form:errors
                             path="password"/></td>
                 </tr>
                 <tr>
-                    <td>Repeat password:</td>
+                    <td><form:label path="repeatedPassword">Repeat password:</form:label></td>
                     <td><form:password path="repeatedPassword"/> <form:errors
                             path="repeatedPassword"/></td>
                 </tr>

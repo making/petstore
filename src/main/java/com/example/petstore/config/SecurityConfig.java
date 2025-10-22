@@ -19,7 +19,7 @@ class SecurityConfig {
 		return http
 			.formLogin(formLogin -> formLogin.loginPage("/account/signon?form")
 				.loginProcessingUrl("/account/signon")
-				.failureUrl("/account/signonForm?error=true"))
+				.failureUrl("/account/signon?form&error=true"))
 			.logout(logout -> logout.logoutUrl("/account/signoff").logoutSuccessUrl("/"))
 			.authorizeHttpRequests(authz -> authz
 			// @formatter:off

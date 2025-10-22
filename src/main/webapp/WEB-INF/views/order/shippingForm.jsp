@@ -23,35 +23,35 @@
                 </tr>
 
                 <tr>
-                    <td>First name:</td>
+                    <td><form:label path="shipToFirstName">First name:</form:label></td>
                     <td><form:input path="shipToFirstName"/></td>
                 </tr>
                 <tr>
-                    <td>Last name:</td>
+                    <td><form:label path="shipToLastName">Last name:</form:label></td>
                     <td><form:input path="shipToLastName"/></td>
                 </tr>
                 <tr>
-                    <td>Address 1:</td>
+                    <td><form:label path="shipAddress1">Address 1:</form:label></td>
                     <td><form:input size="40" path="shipAddress1"/></td>
                 </tr>
                 <tr>
-                    <td>Address 2:</td>
+                    <td><form:label path="shipAddress2">Address 2:</form:label></td>
                     <td><form:input size="40" path="shipAddress2"/></td>
                 </tr>
                 <tr>
-                    <td>City:</td>
+                    <td><form:label path="shipCity">City:</form:label></td>
                     <td><form:input path="shipCity"/></td>
                 </tr>
                 <tr>
-                    <td>State:</td>
+                    <td><form:label path="shipState">State:</form:label></td>
                     <td><form:input size="4" path="shipState"/></td>
                 </tr>
                 <tr>
-                    <td>Zip:</td>
+                    <td><form:label path="shipZip">Zip:</form:label></td>
                     <td><form:input size="10" path="shipZip"/></td>
                 </tr>
                 <tr>
-                    <td>Country:</td>
+                    <td><form:label path="shipCountry">Country:</form:label></td>
                     <td><form:input size="15" path="shipCountry"/></td>
                 </tr>
             </table>
