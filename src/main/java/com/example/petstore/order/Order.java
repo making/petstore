@@ -24,7 +24,6 @@ import java.math.BigDecimal;
 import java.time.Clock;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -312,84 +311,43 @@ public class Order implements Serializable {
 	 * @param account the account
 	 * @param cart the cart
 	 */
-	public Order initOrder(Account account, Cart cart, Clock clock) {
-
-		username = account.getUsername();
-		orderDate = LocalDateTime.now(clock);
-
-		shipToFirstName = account.getFirstName();
-		shipToLastName = account.getLastName();
-		shipAddress1 = account.getAddress1();
-		shipAddress2 = account.getAddress2();
-		shipCity = account.getCity();
-		shipState = account.getState();
-		shipZip = account.getZip();
-		shipCountry = account.getCountry();
-
-		billToFirstName = account.getFirstName();
-		billToLastName = account.getLastName();
-		billAddress1 = account.getAddress1();
-		billAddress2 = account.getAddress2();
-		billCity = account.getCity();
-		billState = account.getState();
-		billZip = account.getZip();
-		billCountry = account.getCountry();
-
-		totalPrice = cart.getSubTotal();
-
-		creditCard = "4012888888881881";
-		expiryDate = "03/2027";
-		cardType = "Visa";
-		courier = "UPS";
-		locale = "CA";
-		status = "P";
-
-		Iterator<CartItem> i = cart.getAllCartItems();
-		while (i.hasNext()) {
-			CartItem cartItem = i.next();
-			addLineItem(cartItem);
+	public static Order.Builder initOrder(Account account, Cart cart, Clock clock) {
+		List<LineItem> lineItems = new ArrayList<>();
+		for (int i = 0; i < cart.getCartItems().size(); i++) {
+			lineItems.add(new LineItem(i + 1, cart.getCartItems().get(i)));
 		}
-
-		return this;
+		return Order.builder()
+			.username(account.getUsername())
+			.orderDate(LocalDateTime.now(clock))
+			.shipToFirstName(account.getFirstName())
+			.shipToLastName(account.getLastName())
+			.shipAddress1(account.getAddress1())
+			.shipAddress2(account.getAddress2())
+			.shipCity(account.getCity())
+			.shipState(account.getState())
+			.shipZip(account.getZip())
+			.shipCountry(account.getCountry())
+			.billToFirstName(account.getFirstName())
+			.billToLastName(account.getLastName())
+			.billAddress1(account.getAddress1())
+			.billAddress2(account.getAddress2())
+			.billCity(account.getCity())
+			.billState(account.getState())
+			.billZip(account.getZip())
+			.billCountry(account.getCountry())
+			.courier("UPS")
+			.locale("CA")
+			.status("P")
+			.creditCard("4012888888881881") // test credit card number
+			.expiryDate("03/2027")
+			.cardType("Visa")
+			.totalPrice(cart.getTotal())
+			.lineItems(lineItems);
 	}
 
 	public void addLineItem(CartItem cartItem) {
 		LineItem lineItem = new LineItem(lineItems.size() + 1, cartItem);
-		addLineItem(lineItem);
-	}
-
-	public void addLineItem(LineItem lineItem) {
 		lineItems.add(lineItem);
-	}
-
-	public void copyFrom(Order source) {
-		this.orderId = source.orderId;
-		this.username = source.username;
-		this.orderDate = source.orderDate;
-		this.shipAddress1 = source.shipAddress1;
-		this.shipAddress2 = source.shipAddress2;
-		this.shipCity = source.shipCity;
-		this.shipState = source.shipState;
-		this.shipZip = source.shipZip;
-		this.shipCountry = source.shipCountry;
-		this.billAddress1 = source.billAddress1;
-		this.billAddress2 = source.billAddress2;
-		this.billCity = source.billCity;
-		this.billState = source.billState;
-		this.billZip = source.billZip;
-		this.billCountry = source.billCountry;
-		this.courier = source.courier;
-		this.totalPrice = source.totalPrice;
-		this.billToFirstName = source.billToFirstName;
-		this.billToLastName = source.billToLastName;
-		this.shipToFirstName = source.shipToFirstName;
-		this.shipToLastName = source.shipToLastName;
-		this.creditCard = source.creditCard;
-		this.expiryDate = source.expiryDate;
-		this.cardType = source.cardType;
-		this.locale = source.locale;
-		this.status = source.status;
-		this.lineItems = new ArrayList<>(source.lineItems);
 	}
 
 	public static Builder builder() {

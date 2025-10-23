@@ -73,7 +73,7 @@
                             Total:
                         </td>
                         <td class="cart-total-amount">
-                            <fmt:formatNumber value="${cart.subTotal}" pattern="$#,##0.00"/>
+                            <fmt:formatNumber value="${cart.total}" pattern="$#,##0.00"/>
                         </td>
                         <td>
                             <input type="submit" value="Update Cart"/>

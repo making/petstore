@@ -49,7 +49,7 @@ public class OrderController {
 			return "redirect:/cart";
 		}
 		Account account = userDetails.account();
-		Order order = new Order().initOrder(account, this.cart, this.clock);
+		Order order = Order.initOrder(account, this.cart, this.clock).build();
 		orderForm.copyFrom(order);
 		return "order/newOrderForm";
 	}
@@ -77,8 +77,7 @@ public class OrderController {
 			return "redirect:/cart";
 		}
 		Account account = userDetails.account();
-		Order.Builder builder = Order.from(new Order().initOrder(account, this.cart, this.clock));
-		Order order = orderForm.copyTo(builder).build();
+		Order order = orderForm.copyTo(Order.initOrder(account, this.cart, this.clock)).build();
 		this.orderService.placeOrder(order);
 		attributes.addAttribute("orderId", order.getOrderId());
 		attributes.addFlashAttribute("message", "Thank you, your order has been submitted.");

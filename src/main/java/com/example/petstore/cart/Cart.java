@@ -47,20 +47,12 @@ public class Cart implements Serializable {
 
 	private final List<CartItem> itemList = Collections.synchronizedList(new ArrayList<>());
 
-	public Iterator<CartItem> getCartItems() {
-		return itemList.iterator();
-	}
-
-	public List<CartItem> getCartItemList() {
+	public List<CartItem> getCartItems() {
 		return itemList;
 	}
 
 	public int getNumberOfItems() {
 		return itemList.size();
-	}
-
-	public Iterator<CartItem> getAllCartItems() {
-		return itemList.iterator();
 	}
 
 	public boolean containsItemId(String itemId) {
@@ -121,10 +113,10 @@ public class Cart implements Serializable {
 	}
 
 	/**
-	 * Gets the subtotal.
-	 * @return the subtotal
+	 * Gets the total.
+	 * @return the total
 	 */
-	public BigDecimal getSubTotal() {
+	public BigDecimal getTotal() {
 		return itemList.stream()
 			.map(cartItem -> cartItem.getItem().getListPrice().multiply(new BigDecimal(cartItem.getQuantity())))
 			.reduce(BigDecimal.ZERO, BigDecimal::add);
