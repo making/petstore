@@ -1,10 +1,10 @@
 package com.example.petstore.account.web;
 
 import com.example.petstore.account.Account;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Null;
 import jakarta.validation.constraints.Size;
-import org.hibernate.validator.constraints.Email;
 
 public class AccountForm {
 
@@ -16,68 +16,67 @@ public class AccountForm {
 
 	}
 
-	@Null(groups = EditAccount.class)
-	@NotNull(groups = NewAccount.class)
-	@Size(min = 1, max = 25)
+	@Null(groups = EditAccount.class, message = "Username cannot be changed")
+	@NotNull(groups = NewAccount.class, message = "Username is required")
+	@Size(min = 1, max = 25, message = "Username must be between 1 and 25 characters")
 	private String username;
 
-	@NotNull
-	@Size(min = 1, max = 25, groups = NewAccount.class)
-	@Size(min = 0, max = 25, groups = EditAccount.class)
+	@NotNull(message = "Password is required")
+	@Size(min = 1, max = 25, groups = NewAccount.class, message = "Password must be between 1 and 25 characters")
+	@Size(min = 0, max = 25, groups = EditAccount.class, message = "Password must be between 0 and 25 characters")
 	private String password;
 
-	@NotNull
-	@Size(min = 1, max = 25, groups = NewAccount.class)
-	@Size(min = 0, max = 25, groups = EditAccount.class)
+	@NotNull(message = "Please confirm your password")
+	@Size(min = 1, max = 25, groups = NewAccount.class, message = "Password must be between 1 and 25 characters")
+	@Size(min = 0, max = 25, groups = EditAccount.class, message = "Password must be between 0 and 25 characters")
 	private String repeatedPassword;
 
-	@NotNull
-	@Size(min = 1, max = 80)
+	@NotNull(message = "First name is required")
+	@Size(min = 1, max = 80, message = "First name must be between 1 and 80 characters")
 	private String firstName;
 
-	@NotNull
-	@Size(min = 1, max = 80)
+	@NotNull(message = "Last name is required")
+	@Size(min = 1, max = 80, message = "Last name must be between 1 and 80 characters")
 	private String lastName;
 
-	@NotNull
-	@Size(min = 1, max = 80)
-	@Email
+	@NotNull(message = "Email is required")
+	@Size(min = 1, max = 80, message = "Email must be between 1 and 80 characters")
+	@Email(message = "Invalid email format")
 	private String email;
 
-	@NotNull
-	@Size(min = 1, max = 80)
+	@NotNull(message = "Phone number is required")
+	@Size(min = 1, max = 80, message = "Phone number must be between 1 and 80 characters")
 	private String phone;
 
-	@NotNull
-	@Size(min = 1, max = 80)
+	@NotNull(message = "Address is required")
+	@Size(min = 1, max = 80, message = "Address must be between 1 and 80 characters")
 	private String address1;
 
-	@NotNull
-	@Size(min = 1, max = 40)
+	@Size(max = 40, message = "Address 2 must be at most 40 characters")
 	private String address2;
 
-	@NotNull
-	@Size(min = 1, max = 80)
+	@NotNull(message = "City is required")
+	@Size(min = 1, max = 80, message = "City must be between 1 and 80 characters")
 	private String city;
 
-	@NotNull
-	@Size(min = 1, max = 80)
+	@NotNull(message = "State is required")
+	@Size(min = 1, max = 80, message = "State must be between 1 and 80 characters")
 	private String state;
 
-	@NotNull
-	@Size(min = 1, max = 20)
+	@NotNull(message = "Zip code is required")
+	@Size(min = 1, max = 20, message = "Zip code must be between 1 and 20 characters")
 	private String zip;
 
-	@NotNull
-	@Size(min = 1, max = 20)
+	@NotNull(message = "Country is required")
+	@Size(min = 1, max = 20, message = "Country must be between 1 and 20 characters")
 	private String country;
 
-	@NotNull
-	@Size(min = 1, max = 80)
+	@NotNull(message = "Language preference is required")
+	@Size(min = 1, max = 80, message = "Language preference must be between 1 and 80 characters")
 	private String languagePreference;
 
-	@NotNull
-	@Size(min = 1, max = 30)
+	@NotNull(message = "Favourite category is required")
+	@Size(min = 1, max = 30, message = "Favourite category must be between 1 and 30 characters")
 	private String favouriteCategoryId;
 
 	private boolean listOption;

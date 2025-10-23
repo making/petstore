@@ -14,8 +14,9 @@
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 <div id="Content">
     <%@ include file="/WEB-INF/views/common/backlink.jsp" %>
-
-    <p>404 Not Found :(</p>
+    <div id="Catalog">
+        <h2>404 Not Found :(</h2>
+    </div>
 </div>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>

@@ -14,8 +14,9 @@
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 <div id="Content">
     <%@ include file="/WEB-INF/views/common/backlink.jsp" %>
-
-    <p>Unexpected Server Error :(</p>
+    <div id="Catalog">
+        <h2>Unexpected Server Error :(</h2>
+    </div>
 </div>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>

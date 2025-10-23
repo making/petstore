@@ -120,7 +120,9 @@
             <form:hidden path="creditCard"/>
             <form:hidden path="expiryDate"/>
             <input type="hidden" name="confirmed" value="true"/>
-            <input type="submit" value="Confirm and Place Order">
+            <div class="order-confirm-section">
+                <input type="submit" class="order-confirm-btn" value="Confirm and Place Order">
+            </div>
         </form:form>
     </div>
 </div>

@@ -337,8 +337,8 @@ public class Order implements Serializable {
 
 		totalPrice = cart.getSubTotal();
 
-		creditCard = "999 9999 9999 9999";
-		expiryDate = "12/03";
+		creditCard = "4012888888881881";
+		expiryDate = "03/2027";
 		cardType = "Visa";
 		courier = "UPS";
 		locale = "CA";

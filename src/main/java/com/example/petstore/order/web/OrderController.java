@@ -12,6 +12,8 @@ import java.util.Objects;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -53,7 +55,10 @@ public class OrderController {
 	}
 
 	@PostMapping(path = "/order/new")
-	public String confirmOrder(OrderForm orderForm) {
+	public String confirmOrder(@Validated OrderForm orderForm, BindingResult bindingResult) {
+		if (bindingResult.hasErrors()) {
+			return "order/newOrderForm";
+		}
 		return "order/confirmOrder";
 	}
 
@@ -63,8 +68,11 @@ public class OrderController {
 	}
 
 	@PostMapping(path = "/order/new", params = "confirmed")
-	public String newOrder(OrderForm orderForm, @AuthenticationPrincipal AccountUserDetails userDetails,
-			RedirectAttributes attributes) {
+	public String newOrder(@Validated OrderForm orderForm, BindingResult bindingResult,
+			@AuthenticationPrincipal AccountUserDetails userDetails, RedirectAttributes attributes) {
+		if (bindingResult.hasErrors()) {
+			return "order/newOrderForm";
+		}
 		if (!this.cart.isAllInStock()) {
 			return "redirect:/cart";
 		}

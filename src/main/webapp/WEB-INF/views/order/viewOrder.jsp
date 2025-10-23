@@ -127,7 +127,7 @@
                         <c:forEach var="lineItem" items="${order.lineItems}">
                             <tr>
                                 <td><a
-                                        href="${pageContext.request.contextPath}/catalog/viewItem?itemId=${f:h(lineItem.item.itemId)}">
+                                        href="${pageContext.request.contextPath}/catalog/items/${f:h(lineItem.item.itemId)}">
                                         ${f:h(lineItem.item.itemId)} </a></td>
                                 <td><c:if
                                         test="${lineItem.item != null}">

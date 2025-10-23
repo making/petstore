@@ -16,7 +16,6 @@
     <%@ include file="/WEB-INF/views/common/backlink.jsp" %>
 
     <div id="Catalog">
-
         <div id="Cart">
             <spring:eval var="cart" expression="@cart"/>
             <h2>Shopping Cart</h2>
@@ -69,18 +68,25 @@
                             </td>
                         </tr>
                     </c:forEach>
-                    <tr>
-                        <td colspan="7">Sub Total: <fmt:formatNumber
-                                value="${cart.subTotal}" pattern="$#,##0.00"/>
-                            <input type="submit" value="Update Cart"/></td>
-                        <td>&nbsp;</td>
+                    <tr class="cart-total-row">
+                        <td colspan="6" style="text-align: right; font-weight: 600; font-size: 1.125rem;">
+                            Total:
+                        </td>
+                        <td class="cart-total-amount">
+                            <fmt:formatNumber value="${cart.subTotal}" pattern="$#,##0.00"/>
+                        </td>
+                        <td>
+                            <input type="submit" value="Update Cart"/>
+                        </td>
                     </tr>
                 </table>
             </form:form>
             <c:if test="${cart.numberOfItems > 0 && cart.allInStock}">
-                <a
-                        href="${pageContext.request.contextPath}/order/new?form">Proceed
-                    to Checkout</a>
+                <div class="checkout-section">
+                    <a class="checkout-btn" href="${pageContext.request.contextPath}/order/new?form">
+                        <i class="fas fa-credit-card"></i> Proceed to Checkout
+                    </a>
+                </div>
             </c:if>
         </div>
 

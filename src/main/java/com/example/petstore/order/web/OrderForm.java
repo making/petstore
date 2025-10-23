@@ -1,45 +1,66 @@
 package com.example.petstore.order.web;
 
 import com.example.petstore.order.Order;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 
 public class OrderForm {
 
+	@NotBlank(message = "Card type is required")
 	private String cardType;
 
+	@NotBlank(message = "Credit card number is required")
+	@Pattern(regexp = "\\d{13,16}", message = "Invalid credit card number (13-16 digits)")
 	private String creditCard;
 
+	@NotBlank(message = "Expiry date is required")
+	@Pattern(regexp = "(0[1-9]|1[0-2])/\\d{4}", message = "Invalid expiry date format (MM/YYYY)")
 	private String expiryDate;
 
+	@NotBlank(message = "First name is required")
 	private String billToFirstName;
 
+	@NotBlank(message = "Last name is required")
 	private String billToLastName;
 
+	@NotBlank(message = "Address is required")
 	private String billAddress1;
 
 	private String billAddress2;
 
+	@NotBlank(message = "City is required")
 	private String billCity;
 
+	@NotBlank(message = "State is required")
 	private String billState;
 
+	@NotBlank(message = "Zip code is required")
 	private String billZip;
 
+	@NotBlank(message = "Country is required")
 	private String billCountry;
 
+	@NotBlank(message = "First name is required")
 	private String shipToFirstName;
 
+	@NotBlank(message = "Last name is required")
 	private String shipToLastName;
 
+	@NotBlank(message = "Address is required")
 	private String shipAddress1;
 
 	private String shipAddress2;
 
+	@NotBlank(message = "City is required")
 	private String shipCity;
 
+	@NotBlank(message = "State is required")
 	private String shipState;
 
+	@NotBlank(message = "Zip code is required")
 	private String shipZip;
 
+	@NotBlank(message = "Country is required")
 	private String shipCountry;
 
 	private boolean shippingAddressRequired;

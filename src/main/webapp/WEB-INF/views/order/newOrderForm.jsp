@@ -23,19 +23,25 @@
                 </tr>
                 <tr>
                     <td><form:label path="cardType">Card Type:</form:label></td>
-                    <td><form:select path="cardType"
-                                     items="${creditCardTypes}">
-                    </form:select></td>
+                    <td>
+                        <form:select path="cardType" items="${creditCardTypes}"/>
+                        <form:errors path="cardType"/>
+                    </td>
                 </tr>
                 <tr>
                     <td><form:label path="creditCard">Card Number:</form:label></td>
-                    <td><form:input path="creditCard"/> * Use a fake
-                        number!
+                    <td>
+                        <form:input path="creditCard"/>
+                        <span style="color: var(--text-secondary); font-size: 0.875rem;">* Use a fake number!</span>
+                        <form:errors path="creditCard"/>
                     </td>
                 </tr>
                 <tr>
                     <td><form:label path="expiryDate">Expiry Date (MM/YYYY):</form:label></td>
-                    <td><form:input path="expiryDate"/></td>
+                    <td>
+                        <form:input path="expiryDate" placeholder="MM/YYYY"/>
+                        <form:errors path="expiryDate"/>
+                    </td>
                 </tr>
                 <tr>
                     <th colspan=2>Billing Address</th>
@@ -43,35 +49,59 @@
 
                 <tr>
                     <td><form:label path="billToFirstName">First name:</form:label></td>
-                    <td><form:input path="billToFirstName"/></td>
+                    <td>
+                        <form:input path="billToFirstName"/>
+                        <form:errors path="billToFirstName"/>
+                    </td>
                 </tr>
                 <tr>
                     <td><form:label path="billToLastName">Last name:</form:label></td>
-                    <td><form:input path="billToLastName"/></td>
+                    <td>
+                        <form:input path="billToLastName"/>
+                        <form:errors path="billToLastName"/>
+                    </td>
                 </tr>
                 <tr>
                     <td><form:label path="billAddress1">Address 1:</form:label></td>
-                    <td><form:input size="40" path="billAddress1"/></td>
+                    <td>
+                        <form:input size="40" path="billAddress1"/>
+                        <form:errors path="billAddress1"/>
+                    </td>
                 </tr>
                 <tr>
                     <td><form:label path="billAddress2">Address 2:</form:label></td>
-                    <td><form:input size="40" path="billAddress2"/></td>
+                    <td>
+                        <form:input size="40" path="billAddress2"/>
+                        <form:errors path="billAddress2"/>
+                    </td>
                 </tr>
                 <tr>
                     <td><form:label path="billCity">City:</form:label></td>
-                    <td><form:input path="billCity"/></td>
+                    <td>
+                        <form:input path="billCity"/>
+                        <form:errors path="billCity"/>
+                    </td>
                 </tr>
                 <tr>
                     <td><form:label path="billState">State:</form:label></td>
-                    <td><form:input size="4" path="billState"/></td>
+                    <td>
+                        <form:input size="4" path="billState"/>
+                        <form:errors path="billState"/>
+                    </td>
                 </tr>
                 <tr>
                     <td><form:label path="billZip">Zip:</form:label></td>
-                    <td><form:input size="10" path="billZip"/></td>
+                    <td>
+                        <form:input size="10" path="billZip"/>
+                        <form:errors path="billZip"/>
+                    </td>
                 </tr>
                 <tr>
                     <td><form:label path="billCountry">Country:</form:label></td>
-                    <td><form:input size="15" path="billCountry"/></td>
+                    <td>
+                        <form:input size="15" path="billCountry"/>
+                        <form:errors path="billCountry"/>
+                    </td>
                 </tr>
 
                 <tr>
