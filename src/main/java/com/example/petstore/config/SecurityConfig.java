@@ -25,6 +25,7 @@ class SecurityConfig {
 			.logout(logout -> logout.logoutUrl("/account/signoff").logoutSuccessUrl("/"))
 			.authorizeHttpRequests(authz -> authz
 			// @formatter:off
+				.requestMatchers("/account/edit").authenticated()
 				.requestMatchers("/order/**").authenticated()
 				.anyRequest().permitAll()
 			// @formatter:on
