@@ -15,7 +15,7 @@
 --
 -- https://github.com/mybatis/jpetstore-6/blob/master/src/main/resources/database/jpetstore-hsqldb-schema.sql
 
-CREATE TABLE supplier
+CREATE TABLE IF NOT EXISTS supplier
 (
     suppid SERIAL PRIMARY KEY,
     name   VARCHAR(80),
@@ -28,13 +28,13 @@ CREATE TABLE supplier
     phone  VARCHAR(80)
 );
 
-CREATE TABLE signon
+CREATE TABLE IF NOT EXISTS signon
 (
     username VARCHAR(25) PRIMARY KEY,
     password VARCHAR(128) NOT NULL
 );
 
-CREATE TABLE account
+CREATE TABLE IF NOT EXISTS account
 (
     userid    VARCHAR(80) PRIMARY KEY,
     email     VARCHAR(80) NOT NULL,
@@ -50,7 +50,7 @@ CREATE TABLE account
     phone     VARCHAR(80) NOT NULL
 );
 
-CREATE TABLE profile
+CREATE TABLE IF NOT EXISTS profile
 (
     userid      VARCHAR(80) PRIMARY KEY,
     langpref    VARCHAR(80) NOT NULL,
@@ -60,13 +60,13 @@ CREATE TABLE profile
     FOREIGN KEY (userid) REFERENCES account (userid)
 );
 
-CREATE TABLE bannerdata
+CREATE TABLE IF NOT EXISTS bannerdata
 (
     favcategory VARCHAR(80) PRIMARY KEY,
     bannername  VARCHAR(255)
 );
 
-CREATE TABLE orders
+CREATE TABLE IF NOT EXISTS orders
 (
     orderid         SERIAL PRIMARY KEY,
     userid          VARCHAR(80)                 NOT NULL,
@@ -96,7 +96,7 @@ CREATE TABLE orders
     FOREIGN KEY (userid) REFERENCES account (userid)
 );
 
-CREATE TABLE orderstatus
+CREATE TABLE IF NOT EXISTS orderstatus
 (
     orderid   INTEGER                     NOT NULL,
     linenum   INTEGER                     NOT NULL,
@@ -106,7 +106,7 @@ CREATE TABLE orderstatus
     FOREIGN KEY (orderid) REFERENCES orders (orderid)
 );
 
-CREATE TABLE lineitem
+CREATE TABLE IF NOT EXISTS lineitem
 (
     orderid   INTEGER        NOT NULL,
     linenum   INTEGER        NOT NULL,
@@ -117,14 +117,14 @@ CREATE TABLE lineitem
     FOREIGN KEY (orderid) REFERENCES orders (orderid)
 );
 
-CREATE TABLE category
+CREATE TABLE IF NOT EXISTS category
 (
     catid VARCHAR(10) PRIMARY KEY,
     name  VARCHAR(80),
     descn VARCHAR(255)
 );
 
-CREATE TABLE product
+CREATE TABLE IF NOT EXISTS product
 (
     productid VARCHAR(10) PRIMARY KEY,
     category  VARCHAR(10) NOT NULL,
@@ -133,10 +133,10 @@ CREATE TABLE product
     FOREIGN KEY (category) REFERENCES category (catid)
 );
 
-CREATE INDEX productCat ON product (category);
-CREATE INDEX productName ON product (LOWER(name));
+CREATE INDEX IF NOT EXISTS productCat ON product (category);
+CREATE INDEX IF NOT EXISTS productName ON product (LOWER(name));
 
-CREATE TABLE item
+CREATE TABLE IF NOT EXISTS item
 (
     itemid    VARCHAR(10) PRIMARY KEY,
     productid VARCHAR(10) NOT NULL,
@@ -153,16 +153,16 @@ CREATE TABLE item
     FOREIGN KEY (supplier) REFERENCES supplier (suppid)
 );
 
-CREATE INDEX itemProd ON item (productid);
+CREATE INDEX IF NOT EXISTS itemProd ON item (productid);
 
-CREATE TABLE inventory
+CREATE TABLE IF NOT EXISTS inventory
 (
     itemid VARCHAR(10) PRIMARY KEY,
     qty    INTEGER NOT NULL,
     FOREIGN KEY (itemid) REFERENCES item (itemid)
 );
 
-CREATE TABLE system_date
+CREATE TABLE IF NOT EXISTS system_date
 (
     date_time TIMESTAMP WITH TIME ZONE
 );
