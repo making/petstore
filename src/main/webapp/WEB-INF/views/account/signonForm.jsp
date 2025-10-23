@@ -18,7 +18,7 @@
             <c:if test="${not empty param.error}">
                 <div class="alert alert-error">
                     <h4 class="alert-heading"><i class="fas fa-exclamation-circle"></i>Login error!</h4>
-                    ${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}
+                        ${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}
                 </div>
             </c:if>
             <form:form action='${pageContext.request.contextPath}/account/signon'
@@ -27,12 +27,14 @@
                 <p>Please enter your username and password.</p>
                 <div style="text-align: left;">
                     <div style="margin-bottom: 1rem;">
-                        <label for="username" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Username:</label>
-                        <input type='text' name='username' id='username' value='j2ee' style="width: 100%;">
+                        <label for="username"
+                               style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Username:</label>
+                        <input type='text' name='j_username' id='username' value='j2ee' style="width: 100%;">
                     </div>
                     <div style="margin-bottom: 1.5rem;">
-                        <label for="password" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Password:</label>
-                        <input type='password' name='password' id='password' value="j2ee" style="width: 100%;"/>
+                        <label for="password"
+                               style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Password:</label>
+                        <input type='password' name='j_password' id='password' value="j2ee" style="width: 100%;"/>
                     </div>
                     <input name="submit" type="submit" value="Sign in" style="width: 100%;"/>
                 </div>
