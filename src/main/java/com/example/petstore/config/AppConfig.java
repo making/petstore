@@ -28,6 +28,7 @@ class AppConfig {
 		CommonsRequestLoggingFilter loggingFilter = new CommonsRequestLoggingFilter();
 		loggingFilter.setIncludeHeaders(true);
 		loggingFilter.setIncludeClientInfo(true);
+		loggingFilter.setIncludeQueryString(true);
 		return loggingFilter;
 	}
 
