@@ -14,6 +14,10 @@ public abstract class BasePage {
 		this.baseUrl = baseUrl;
 	}
 
+	public String getBaseUrl() {
+		return this.baseUrl;
+	}
+
 	public String getFieldValue(String fieldId) {
 		return this.page.locator("#" + fieldId).inputValue();
 	}

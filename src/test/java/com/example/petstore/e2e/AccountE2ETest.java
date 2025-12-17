@@ -72,7 +72,7 @@ class AccountE2ETest {
 	void loginShouldSucceedWithCorrectCredentials() {
 		this.accountPage.navigateToSignOn();
 		this.accountPage.fillSignOnForm("j2ee", "j2ee").submitSignOnForm();
-		assertThat(this.page.url()).isEqualTo("http://localhost:" + this.serverPort + "/catalog");
+		assertThat(this.page.url()).isEqualTo(this.accountPage.getBaseUrl() + "/catalog");
 		// Verify welcome message contains user's first name
 		assertThat(this.accountPage.getWelcomeMessage()).contains("Welcome ABC!");
 	}
@@ -81,8 +81,7 @@ class AccountE2ETest {
 	void loginShouldFailWithIncorrectCredentials() {
 		this.accountPage.navigateToSignOn();
 		this.accountPage.fillSignOnForm("invalidUser", "invalidPass").submitSignOnForm();
-		assertThat(this.page.url())
-			.isEqualTo("http://localhost:" + this.serverPort + "/account/signon?form&error=true");
+		assertThat(this.page.url()).isEqualTo(this.accountPage.getBaseUrl() + "/account/signon?form&error=true");
 		assertThat(this.accountPage.getAlertErrorHeader()).isEqualTo("Login error!");
 	}
 
@@ -113,13 +112,13 @@ class AccountE2ETest {
 		this.accountPage.fillAccountForm(formData).submitAccountForm();
 
 		// After successful registration, should redirect to sign-on page
-		assertThat(this.page.url()).isEqualTo("http://localhost:" + this.serverPort + "/account/signon?form");
+		assertThat(this.page.url()).isEqualTo(this.accountPage.getBaseUrl() + "/account/signon?form");
 		// Verify sign-on page prompt is displayed
 		assertThat(this.accountPage.getSignonPagePrompt()).isEqualTo("Please enter your username and password.");
 
 		// Verify the new user can log in
 		this.accountPage.fillSignOnForm(uniqueUsername, "password123").submitSignOnForm();
-		assertThat(this.page.url()).isEqualTo("http://localhost:" + this.serverPort + "/catalog");
+		assertThat(this.page.url()).isEqualTo(this.accountPage.getBaseUrl() + "/catalog");
 		// Verify welcome message contains the new user's first name
 		assertThat(this.accountPage.getWelcomeMessage()).contains("Welcome Test!");
 	}
@@ -145,7 +144,7 @@ class AccountE2ETest {
 		this.accountPage.fillAccountForm(formData).submitAccountForm();
 
 		// Should stay on the registration form due to validation error
-		assertThat(this.page.url()).isEqualTo("http://localhost:" + this.serverPort + "/account/new");
+		assertThat(this.page.url()).isEqualTo(this.accountPage.getBaseUrl() + "/account/new");
 		// Verify form header is still displayed (indicating we're on the form page)
 		assertThat(this.accountPage.getFormHeader()).isEqualTo("User Information");
 		// Verify validation error message is displayed for password field
@@ -160,7 +159,7 @@ class AccountE2ETest {
 
 		// Navigate to edit account page
 		this.accountPage.navigateToEditAccount();
-		assertThat(this.page.url()).isEqualTo("http://localhost:" + this.serverPort + "/account/edit?form");
+		assertThat(this.page.url()).isEqualTo(this.accountPage.getBaseUrl() + "/account/edit?form");
 		// Verify form header is displayed
 		assertThat(this.accountPage.getFormHeader()).isEqualTo("User Information");
 
@@ -187,7 +186,7 @@ class AccountE2ETest {
 		this.accountPage.fillAccountForm(formData).submitAccountForm();
 
 		// Should redirect back to edit form after successful update
-		assertThat(this.page.url()).isEqualTo("http://localhost:" + this.serverPort + "/account/edit?form");
+		assertThat(this.page.url()).isEqualTo(this.accountPage.getBaseUrl() + "/account/edit?form");
 
 		// Verify the updated values are displayed
 		assertThat(this.accountPage.getFieldValue("firstName")).isEqualTo("Updated");
