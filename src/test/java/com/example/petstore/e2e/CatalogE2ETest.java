@@ -4,7 +4,6 @@ import com.example.petstore.TestcontainersConfiguration;
 import com.example.petstore.page.CatalogPage;
 import com.microsoft.playwright.Browser;
 import com.microsoft.playwright.BrowserContext;
-import com.microsoft.playwright.BrowserType;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.Playwright;
 import org.junit.jupiter.api.AfterAll;
@@ -38,7 +37,7 @@ class CatalogE2ETest {
 	@BeforeAll
 	static void before() {
 		playwright = Playwright.create();
-		browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
+		browser = playwright.chromium().launch();
 	}
 
 	@AfterAll

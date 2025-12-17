@@ -85,4 +85,10 @@ public class CartPage extends BasePage {
 		return this.page.locator("#Cart table tr:has(a[href*='/catalog/items/'])").count();
 	}
 
+	public boolean getItemInStock(String itemId) {
+		Locator row = this.page.locator("#Cart table tr:has(a:text-is('" + itemId + "'))");
+		String inStockValue = row.locator("td:nth-child(4)").innerText().trim();
+		return Boolean.parseBoolean(inStockValue);
+	}
+
 }

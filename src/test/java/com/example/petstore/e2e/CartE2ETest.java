@@ -184,4 +184,20 @@ class CartE2ETest {
 		assertThat(this.cartPage.getCartTotal()).isEqualTo("$35.00");
 	}
 
+	@Test
+	void updateQuantityExceedingStockShouldHideCheckoutButton() {
+		// Add item to cart - should be in stock initially
+		this.cartPage.addItemToCart("EST-1");
+		assertThat(this.cartPage.getItemInStock("EST-1")).isTrue();
+		assertThat(this.cartPage.hasCheckoutButton()).isTrue();
+
+		// Update quantity to exceed stock (inventory is 10000 for all items)
+		this.cartPage.updateItemQuantity("EST-1", 10001).submitUpdateCart();
+
+		// Verify item is marked as out of stock
+		assertThat(this.cartPage.getItemInStock("EST-1")).isFalse();
+		// Checkout button should be hidden when items are out of stock
+		assertThat(this.cartPage.hasCheckoutButton()).isFalse();
+	}
+
 }
