@@ -1,8 +1,8 @@
-image: ghcr.io/making/petstore@sha256:30123784f6f5ead8de562883d9e5e24d5cc669b6f3fbc6e3cd117047ed858cbd
-git_revision: 44f0c8ff3587b5428276d13220e211352aa9ff30
+image: ghcr.io/making/petstore@sha256:65ff78c35edf9a317e1bb4dc3f316163afa120aadfc6efc3e084dd91299840fc
+git_revision: e643e2d5408f569e3f84c3fb546747f5a9d6a466
 deployment:
   image:
     repository: ghcr.io/making/petstore
-    digest: sha256:30123784f6f5ead8de562883d9e5e24d5cc669b6f3fbc6e3cd117047ed858cbd
+    digest: sha256:65ff78c35edf9a317e1bb4dc3f316163afa120aadfc6efc3e084dd91299840fc
   podLabels:
-    github.com/revision: 44f0c8ff3587b5428276d13220e211352aa9ff30
+    github.com/revision: e643e2d5408f569e3f84c3fb546747f5a9d6a466
