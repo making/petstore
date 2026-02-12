@@ -1,0 +1,68 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <th:block th:insert="~{common/head}"></th:block>
+</head>
+<body>
+<th:block th:insert="~{common/header}"></th:block>
+<div id="Content">
+    <div id="Catalog">
+        <form th:action="@{/order/new}" th:object="${orderForm}" method="post">
+
+            <table>
+                <tr>
+                    <th colspan=2>Shipping Address</th>
+                </tr>
+
+                <tr>
+                    <td><label for="shipToFirstName">First name:</label></td>
+                    <td><input type="text" th:field="*{shipToFirstName}"/></td>
+                </tr>
+                <tr>
+                    <td><label for="shipToLastName">Last name:</label></td>
+                    <td><input type="text" th:field="*{shipToLastName}"/></td>
+                </tr>
+                <tr>
+                    <td><label for="shipAddress1">Address 1:</label></td>
+                    <td><input type="text" th:field="*{shipAddress1}" size="40"/></td>
+                </tr>
+                <tr>
+                    <td><label for="shipAddress2">Address 2:</label></td>
+                    <td><input type="text" th:field="*{shipAddress2}" size="40"/></td>
+                </tr>
+                <tr>
+                    <td><label for="shipCity">City:</label></td>
+                    <td><input type="text" th:field="*{shipCity}"/></td>
+                </tr>
+                <tr>
+                    <td><label for="shipState">State:</label></td>
+                    <td><input type="text" th:field="*{shipState}" size="4"/></td>
+                </tr>
+                <tr>
+                    <td><label for="shipZip">Zip:</label></td>
+                    <td><input type="text" th:field="*{shipZip}" size="10"/></td>
+                </tr>
+                <tr>
+                    <td><label for="shipCountry">Country:</label></td>
+                    <td><input type="text" th:field="*{shipCountry}" size="15"/></td>
+                </tr>
+            </table>
+            <input type="hidden" th:field="*{cardType}"/>
+            <input type="hidden" th:field="*{creditCard}"/>
+            <input type="hidden" th:field="*{expiryDate}"/>
+            <input type="hidden" th:field="*{billToFirstName}"/>
+            <input type="hidden" th:field="*{billToLastName}"/>
+            <input type="hidden" th:field="*{billAddress1}"/>
+            <input type="hidden" th:field="*{billAddress2}"/>
+            <input type="hidden" th:field="*{billCity}"/>
+            <input type="hidden" th:field="*{billState}"/>
+            <input type="hidden" th:field="*{billZip}"/>
+            <input type="hidden" th:field="*{billCountry}"/>
+            <input type="submit" name="newOrder" value="Continue"/>
+        </form>
+    </div>
+</div>
+<th:block th:insert="~{common/footer}"></th:block>
+</body>

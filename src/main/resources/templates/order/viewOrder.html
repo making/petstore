@@ -1,0 +1,155 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <th:block th:insert="~{common/head}"></th:block>
+</head>
+<body>
+<th:block th:insert="~{common/header}"></th:block>
+<div id="Content">
+    <th:block th:insert="~{common/backlink}"></th:block>
+    <div id="Catalog">
+
+        <table>
+            <tr>
+                <th align="center" colspan="2">Order #[[${order.orderId}]]
+                    [[${order.orderDate.withNano(0)}]]
+                </th>
+            </tr>
+            <tr>
+                <th colspan="2">Payment Details</th>
+            </tr>
+            <tr>
+                <td>Card Type:</td>
+                <td>[[${order.cardType}]]</td>
+            </tr>
+            <tr>
+                <td>Card Number:</td>
+                <td>[[${order.creditCard}]]*Fakenumber!</td>
+            </tr>
+            <tr>
+                <td>Expiry Date (MM/YYYY):</td>
+                <td>[[${order.expiryDate}]]</td>
+            </tr>
+            <tr>
+                <th colspan="2">Billing Address</th>
+            </tr>
+            <tr>
+                <td>First name:</td>
+                <td>[[${order.billToFirstName}]]</td>
+            </tr>
+            <tr>
+                <td>Last name:</td>
+                <td>[[${order.billToLastName}]]</td>
+            </tr>
+            <tr>
+                <td>Address 1:</td>
+                <td>[[${order.billAddress1}]]</td>
+            </tr>
+            <tr>
+                <td>Address 2:</td>
+                <td>[[${order.billAddress2}]]</td>
+            </tr>
+            <tr>
+                <td>City:</td>
+                <td>[[${order.billCity}]]</td>
+            </tr>
+            <tr>
+                <td>State:</td>
+                <td>[[${order.billState}]]</td>
+            </tr>
+            <tr>
+                <td>Zip:</td>
+                <td>[[${order.billZip}]]</td>
+            </tr>
+            <tr>
+                <td>Country:</td>
+                <td>[[${order.billCountry}]]</td>
+            </tr>
+            <tr>
+                <th colspan="2">Shipping Address</th>
+            </tr>
+            <tr>
+                <td>First name:</td>
+                <td>[[${order.shipToFirstName}]]</td>
+            </tr>
+            <tr>
+                <td>Last name:</td>
+                <td>[[${order.shipToLastName}]]</td>
+            </tr>
+            <tr>
+                <td>Address 1:</td>
+                <td>[[${order.shipAddress1}]]</td>
+            </tr>
+            <tr>
+                <td>Address 2:</td>
+                <td>[[${order.shipAddress2}]]</td>
+            </tr>
+            <tr>
+                <td>City:</td>
+                <td>[[${order.shipCity}]]</td>
+            </tr>
+            <tr>
+                <td>State:</td>
+                <td>[[${order.shipState}]]</td>
+            </tr>
+            <tr>
+                <td>Zip:</td>
+                <td>[[${order.shipZip}]]</td>
+            </tr>
+            <tr>
+                <td>Country:</td>
+                <td>[[${order.shipCountry}]]</td>
+            </tr>
+            <tr>
+                <td>Courier:</td>
+                <td>[[${order.courier}]]</td>
+            </tr>
+            <tr>
+                <td colspan="2">Status: [[${order.status}]]</td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <table>
+                        <tr>
+                            <th>Item ID</th>
+                            <th>Description</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th>Total Cost</th>
+                        </tr>
+                        <th:block th:each="lineItem : ${order.lineItems}">
+                            <tr>
+                                <td><a
+                                        th:href="@{/catalog/items/{itemId}(itemId=${lineItem.item.itemId})}">
+                                        [[${lineItem.item.itemId}]] </a></td>
+                                <td><th:block th:if="${lineItem.item != null}">
+                                    [[${lineItem.item.attribute1}]]
+                                    [[${lineItem.item.attribute2}]]
+                                    [[${lineItem.item.attribute3}]]
+                                    [[${lineItem.item.attribute4}]]
+                                    [[${lineItem.item.attribute5}]]
+                                    [[${lineItem.item.product.name}]]
+                                </th:block> <th:block th:if="${lineItem.item == null}">
+                                    <i>{description unavailable}</i>
+                                </th:block></td>
+
+                                <td>[[${lineItem.quantity}]]</td>
+                                <td>[[${'$' + #numbers.formatDecimal(lineItem.unitPrice,1,'COMMA',2,'POINT')}]]</td>
+                                <td>[[${'$' + #numbers.formatDecimal(lineItem.total,1,'COMMA',2,'POINT')}]]</td>
+                            </tr>
+                        </th:block>
+                        <tr>
+                            <th colspan="5">Total: [[${'$' + #numbers.formatDecimal(order.totalPrice,1,'COMMA',2,'POINT')}]]</th>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+        </table>
+
+    </div>
+</div>
+<th:block th:insert="~{common/footer}"></th:block>
+</body>

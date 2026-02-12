@@ -1,0 +1,41 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <th:block th:insert="~{common/head}"></th:block>
+</head>
+<body>
+<th:block th:insert="~{common/header}"></th:block>
+<div id="Content">
+    <div id="Catalog">
+        <form th:action="@{/account/edit}" th:object="${accountForm}" method="post">
+
+            <h3>User Information</h3>
+
+            <table>
+                <tr>
+                    <td>User ID:</td>
+                    <td>[[${accountForm.username}]]</td>
+                </tr>
+                <tr>
+                    <td><label for="password">New password:</label></td>
+                    <td><input type="password" th:field="*{password}"/> <span id="password.errors" th:errors="*{password}"></span></td>
+                </tr>
+                <tr>
+                    <td><label for="repeatedPassword">Repeat password:</label></td>
+                    <td><input type="password" th:field="*{repeatedPassword}"/> <span id="repeatedPassword.errors" th:errors="*{repeatedPassword}"></span></td>
+                </tr>
+            </table>
+            <th:block th:insert="~{account/accountFields}"></th:block>
+
+            <input type="submit" name="editAccount"
+                   value="Save Account Information"/>
+
+        </form>
+        <a th:href="@{/order/orders}">My
+            Orders</a>
+    </div>
+</div>
+<th:block th:insert="~{common/footer}"></th:block>
+</body>

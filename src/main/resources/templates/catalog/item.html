@@ -1,0 +1,53 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <th:block th:insert="~{common/head}"></th:block>
+</head>
+<body>
+<th:block th:insert="~{common/header}"></th:block>
+<div id="Content">
+    <th:block th:insert="~{common/backlink}"></th:block>
+
+    <div id="Catalog">
+
+        <div class="item-detail">
+            <div class="item-image">
+                [[${product.description}]]<!-- XSS Vulnerable! -->
+            </div>
+            <div class="item-info">
+                <div class="item-id">
+                    <span class="label">Item ID:</span> [[${item.itemId}]]
+                </div>
+                <h2 class="item-title">
+                    [[${item.attribute1}]] [[${item.attribute2}]]
+                    [[${item.attribute3}]] [[${item.attribute4}]]
+                    [[${item.attribute5}]] [[${product.name}]]
+                </h2>
+                <div class="item-product-name">
+                    [[${product.name}]]
+                </div>
+                <div class="item-stock">
+                    <th:block th:if="${item.quantity <= 0}">
+                        <span class="out-of-stock"><i class="fas fa-times-circle"></i> Back ordered</span>
+                    </th:block>
+                    <th:block th:if="${item.quantity > 0}">
+                        <span class="in-stock"><i class="fas fa-check-circle"></i> [[${item.quantity}]] in stock</span>
+                    </th:block>
+                </div>
+                <div class="item-price">
+                    [[${'$' + #numbers.formatDecimal(item.listPrice,1,'COMMA',2,'POINT')}]]
+                </div>
+                <div class="item-action">
+                    <a class="add-to-cart-btn" th:href="@{/cart?add(workingItemId=${item.itemId})}">
+                        <i class="fas fa-cart-plus"></i> Add to Cart
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<th:block th:insert="~{common/footer}"></th:block>
+</body>

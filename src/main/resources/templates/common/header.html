@@ -1,0 +1,57 @@
+
+<div id="Header">
+    <div id="Logo">
+        <div id="LogoContent">
+            <a th:href="@{/catalog}" style="text-decoration: none; color: var(--primary-color); font-size: 1.5rem; font-weight: 700;">
+                <i class="fas fa-paw"></i> Pet Store
+            </a>
+        </div>
+    </div>
+
+    <div id="Menu">
+        <div id="MenuContent">
+            <a th:href="@{/cart}">
+                <i class="fas fa-shopping-cart"></i> Cart
+            </a>
+
+            <th:block sec:authorize="!isAuthenticated()">
+                <a th:href="@{/account/signon?form}"><i class="fas fa-sign-in-alt"></i> Sign In</a>
+            </th:block>
+            <th:block sec:authorize="isAuthenticated()">
+                <a th:href="@{/account/edit?form}"><i class="fas fa-user"></i> My Account</a>
+                <a th:href="@{/account/signoff?form}"><i class="fas fa-sign-out-alt"></i> Sign Out</a>
+            </th:block>
+        </div>
+    </div>
+
+    <div id="Search">
+        <div id="SearchContent">
+            <form
+                    th:action="@{/catalog/products}"
+                    method="get">
+                <input type="text" name="keyword" size="14"/> <input
+                    type="submit" name="searchProducts"
+                    value="Search"/>
+            </form>
+        </div>
+    </div>
+
+    <div id="QuickLinks">
+        <a th:href="@{/catalog/categories/FISH}">
+            <i class="fas fa-fish"></i> Fish
+        </a>
+        <a th:href="@{/catalog/categories/DOGS}">
+            <i class="fas fa-dog"></i> Dogs
+        </a>
+        <a th:href="@{/catalog/categories/REPTILES}">
+            <i class="fas fa-dragon"></i> Reptiles
+        </a>
+        <a th:href="@{/catalog/categories/CATS}">
+            <i class="fas fa-cat"></i> Cats
+        </a>
+        <a th:href="@{/catalog/categories/BIRDS}">
+            <i class="fas fa-dove"></i> Birds
+        </a>
+    </div>
+
+</div>
