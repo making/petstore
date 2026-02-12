@@ -55,10 +55,14 @@ public class OrderController {
 	}
 
 	@PostMapping(path = "/order/new")
-	public String confirmOrder(@Validated OrderForm orderForm, BindingResult bindingResult) {
+	public String confirmOrder(@Validated OrderForm orderForm, BindingResult bindingResult,
+			@AuthenticationPrincipal AccountUserDetails userDetails, Model model) {
 		if (bindingResult.hasErrors()) {
 			return "order/newOrderForm";
 		}
+		Account account = userDetails.account();
+		Order order = orderForm.copyTo(Order.initOrder(account, this.cart, this.clock)).build();
+		model.addAttribute(order);
 		return "order/confirmOrder";
 	}
 
