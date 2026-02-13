@@ -1,0 +1,18 @@
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:insert="~{common/head}"></th:block>
+</head>
+<body>
+<th:block th:insert="~{common/header}"></th:block>
+<div id="Content">
+    <div id="Catalog">
+        <form th:action="@{/account/signoff}" method="POST">
+            <input name="submit" type="submit" value="Sign out"/>
+        </form>
+    </div>
+</div>
+<th:block th:insert="~{common/footer}"></th:block>
+</body>

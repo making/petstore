@@ -1,0 +1,35 @@
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:insert="~{common/head}"></th:block>
+</head>
+<body>
+<th:block th:insert="~{common/header}"></th:block>
+<div id="Content">
+    <th:block th:insert="~{common/backlink}"></th:block>
+    <div id="Catalog">
+        <h2>My Orders</h2>
+        <table>
+            <tr>
+                <th>Order ID</th>
+                <th>Date</th>
+                <th>Total Price</th>
+            </tr>
+
+            <th:block th:each="order : ${orderList}">
+                <tr>
+                    <td><a
+                            th:href="@{/order/orders/{orderId}(orderId=${order.orderId})}">[[${order.orderId}]]</a>
+                    </td>
+                    <td>[[${order.orderDate.withNano(0)}]]</td>
+                    <td>[[${'$' + #numbers.formatDecimal(order.totalPrice,1,'COMMA',2,'POINT')}]]</td>
+                </tr>
+            </th:block>
+        </table>
+
+    </div>
+</div>
+<th:block th:insert="~{common/footer}"></th:block>
+</body>

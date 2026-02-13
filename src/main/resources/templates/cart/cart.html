@@ -1,0 +1,92 @@
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <th:block th:insert="~{common/head}"></th:block>
+</head>
+<body>
+<th:block th:insert="~{common/header}"></th:block>
+<div id="Content">
+    <th:block th:insert="~{common/backlink}"></th:block>
+
+    <div id="Catalog">
+        <div id="Cart">
+            <th:block th:with="cart=${@cart}">
+            <h2>Shopping Cart</h2>
+            <form th:action="@{/cart?update}" method="post">
+                <table>
+                    <tr>
+                        <th><b>Item ID</b></th>
+                        <th><b>Product ID</b></th>
+                        <th><b>Description</b></th>
+                        <th><b>In Stock?</b></th>
+                        <th><b>Quantity</b></th>
+                        <th><b>List Price</b></th>
+                        <th><b>Total Cost</b></th>
+                        <th>&nbsp;</th>
+                    </tr>
+
+                    <th:block th:if="${cart.numberOfItems == 0}">
+                        <tr>
+                            <td colspan="8"><b>Your cart is empty.</b></td>
+                        </tr>
+                    </th:block>
+
+                    <th:block th:each="cartItem : ${cart.cartItems}">
+                        <tr>
+                            <td><a
+                                    th:href="@{/catalog/items/{itemId}(itemId=${cartItem.item.itemId})}">
+                                    [[${cartItem.item.itemId}]]</a></td>
+                            <td>[[${cartItem.item.product.productId}]]</td>
+                            <td>[[${cartItem.item.attribute1}]]
+                                    [[${cartItem.item.attribute2}]]
+                                    [[${cartItem.item.attribute3}]]
+                                    [[${cartItem.item.attribute4}]]
+                                    [[${cartItem.item.attribute5}]]
+                                    [[${cartItem.item.product.name}]]</td>
+                            <td>[[${cartItem.inStock}]]</td>
+                            <td><label th:for="|quantity[${cartItem.item.itemId}]|"><input type="number" th:name="|quantity[${cartItem.item.itemId}]|" th:value="${cartItem.quantity}" min="0"/></label></td>
+                            <td>[[${'$' + #numbers.formatDecimal(cartItem.item.listPrice,1,'COMMA',2,'POINT')}]]</td>
+                            <td>[[${'$' + #numbers.formatDecimal(cartItem.total,1,'COMMA',2,'POINT')}]]</td>
+                            <td><a
+                                    th:href="@{/cart?remove(cartItem=${cartItem.item.itemId})}">Remove</a>
+                            </td>
+                        </tr>
+                    </th:block>
+                    <tr class="cart-total-row">
+                        <td colspan="6" style="text-align: right; font-weight: 600; font-size: 1.125rem;">
+                            Total:
+                        </td>
+                        <td class="cart-total-amount">
+                            [[${'$' + #numbers.formatDecimal(cart.total,1,'COMMA',2,'POINT')}]]
+                        </td>
+                        <td>
+                            <input type="submit" value="Update Cart"/>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+            <th:block th:if="${cart.numberOfItems > 0 && cart.allInStock}">
+                <div class="checkout-section">
+                    <a class="checkout-btn" th:href="@{/order/new?form}">
+                        <i class="fas fa-credit-card"></i> Proceed to Checkout
+                    </a>
+                </div>
+            </th:block>
+        </div>
+
+        <th:block sec:authorize="isAuthenticated()">
+            <th:block th:with="account=${#authentication.principal.account}">
+            <div id="MyList">
+                <th:block th:if="${account.listOption}">
+                    <th:block th:insert="~{cart/mylist}"></th:block>
+                </th:block>
+            </div>
+        </th:block></th:block>
+
+        <div id="Separator">&nbsp;</div>
+    </div>
+</div>
+<th:block th:insert="~{common/footer}"></th:block>
+</body></th:block>

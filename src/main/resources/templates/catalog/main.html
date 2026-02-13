@@ -1,0 +1,87 @@
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <th:block th:insert="~{common/head}"></th:block>
+</head>
+<body>
+<th:block th:insert="~{common/header}"></th:block>
+<div id="Content">
+    <div id="Welcome">
+        <div id="WelcomeContent">
+            <th:block sec:authorize="isAuthenticated()">
+                <th:block th:with="account=${#authentication.principal.account}">
+                Welcome [[${account.firstName}]]!
+            </th:block></th:block>
+        </div>
+    </div>
+    <div id="Main">
+        <div id="Sidebar">
+            <div id="SidebarContent">
+                <div class="sidebar-item">
+                    <a th:href="@{/catalog/categories/FISH}">
+                        <i class="fas fa-fish"></i> Fish
+                    </a>
+                    <div class="sidebar-desc">Saltwater, Freshwater</div>
+                </div>
+                <div class="sidebar-item">
+                    <a th:href="@{/catalog/categories/DOGS}">
+                        <i class="fas fa-dog"></i> Dogs
+                    </a>
+                    <div class="sidebar-desc">Various Breeds</div>
+                </div>
+                <div class="sidebar-item">
+                    <a th:href="@{/catalog/categories/CATS}">
+                        <i class="fas fa-cat"></i> Cats
+                    </a>
+                    <div class="sidebar-desc">Various Breeds, Exotic Varieties</div>
+                </div>
+                <div class="sidebar-item">
+                    <a th:href="@{/catalog/categories/REPTILES}">
+                        <i class="fas fa-dragon"></i> Reptiles
+                    </a>
+                    <div class="sidebar-desc">Lizards, Turtles, Snakes</div>
+                </div>
+                <div class="sidebar-item">
+                    <a th:href="@{/catalog/categories/BIRDS}">
+                        <i class="fas fa-dove"></i> Birds
+                    </a>
+                    <div class="sidebar-desc">Exotic Varieties</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="MainImage">
+            <div id="MainImageContent">
+                <map name="estoremap">
+                    <area alt="Birds" coords="72,2,280,250"
+                          th:href="@{/catalog/categories/BIRDS}"
+                          shape="RECT"/>
+                    <area alt="Fish" coords="2,180,72,250"
+                          th:href="@{/catalog/categories/FISH}"
+                          shape="RECT"/>
+                    <area alt="Dogs" coords="60,250,130,320"
+                          th:href="@{/catalog/categories/DOGS}"
+                          shape="RECT"/>
+                    <area alt="Reptiles" coords="140,270,210,340"
+                          th:href="@{/catalog/categories/REPTILES}"
+                          shape="RECT"/>
+                    <area alt="Cats" coords="225,240,295,310"
+                          th:href="@{/catalog/categories/CATS}"
+                          shape="RECT"/>
+                    <area alt="Birds" coords="280,180,350,250"
+                          th:href="@{/catalog/categories/BIRDS}"
+                          shape="RECT"/>
+                </map>
+                <img height="355"
+                     th:src="@{/images/splash.gif}"
+                     align="middle" usemap="#estoremap" width="350"/>
+            </div>
+        </div>
+
+        <div id="Separator">&nbsp;</div>
+    </div>
+</div>
+<th:block th:insert="~{common/footer}"></th:block>
+</body>

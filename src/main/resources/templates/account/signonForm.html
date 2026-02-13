@@ -1,0 +1,45 @@
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:insert="~{common/head}"></th:block>
+</head>
+<body>
+<th:block th:insert="~{common/header}"></th:block>
+<div id="Content">
+    <div id="Catalog">
+        <div style="max-width: 500px; margin: 0 auto;">
+            <th:block th:if="${!(param.error == null or param.error.isEmpty())}">
+                <div class="alert alert-error">
+                    <h4 class="alert-heading"><i class="fas fa-exclamation-circle"></i>Login error!</h4>
+                        [[${session['SPRING_SECURITY_LAST_EXCEPTION'].message}]]
+                </div>
+            </th:block>
+            <form th:action="@{/account/signon}" method="POST">
+
+                <p>Please enter your username and password.</p>
+                <div style="text-align: left;">
+                    <div style="margin-bottom: 1rem;">
+                        <label for="username"
+                               style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Username:</label>
+                        <input type='text' name='j_username' id='username' value='j2ee' style="width: 100%;">
+                    </div>
+                    <div style="margin-bottom: 1.5rem;">
+                        <label for="password"
+                               style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Password:</label>
+                        <input type='password' name='j_password' id='password' value="j2ee" style="width: 100%;"/>
+                    </div>
+                    <input name="submit" type="submit" value="Sign in" style="width: 100%;"/>
+                </div>
+            </form>
+            <div style="margin-top: 1rem;">
+                Need a user name and password? <a
+                    th:href="@{/account/new?form}">Register
+                Now!</a>
+            </div>
+        </div>
+    </div>
+</div>
+<th:block th:insert="~{common/footer}"></th:block>
+</body>

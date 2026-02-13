@@ -1,0 +1,40 @@
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:insert="~{common/head}"></th:block>
+</head>
+<body>
+<th:block th:insert="~{common/header}"></th:block>
+<div id="Content">
+    <th:block th:insert="~{common/backlink}"></th:block>
+
+    <div id="Catalog">
+        <table class="product-search-table">
+            <tr>
+                <th>&nbsp;</th>
+                <th>Product ID</th>
+                <th>Name</th>
+            </tr>
+            <th:block th:each="product : ${productList}">
+                <tr>
+                    <td class="product-image-cell">
+                        <a th:href="@{/catalog/products/{productId}(productId=${product.productId})}">
+                            [[${product.description}]]<!-- XSS Vulnerable! -->
+                        </a>
+                    </td>
+                    <td class="product-id-cell">
+                        <a th:href="@{/catalog/products/{productId}(productId=${product.productId})}">
+                            [[${product.productId}]]
+                        </a>
+                    </td>
+                    <td class="product-name-cell">[[${product.name}]]</td>
+                </tr>
+            </th:block>
+        </table>
+
+    </div>
+</div>
+<th:block th:insert="~{common/footer}"></th:block>
+</body>
